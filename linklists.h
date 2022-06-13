@@ -10,6 +10,7 @@ Includes basic functions to create, update, modify, traverse and reverse integer
 linked lists.
 A linked list is referred as a pointer to its first Node.
 An empty linked list can be created by initializing a NULL Node pointer.
+Nodes of the linked lists will be saved in the heap.
 
 */
 
@@ -68,4 +69,94 @@ void insertNode(Node **hpp, int value, int pos) {
     np -> next = newnode;
 }
 
+/* Deletes the Node at the specified position (int pos). The linked list argument must be a pointer to the heads pointer (Node **hpp). Prints an error if index is larger than linked list length minus one. It also frees the allocadted Node in the heap. */
+void deleteNode(Node **hpp, int pos) {
+
+    int len = linkListLen(*hpp);
+    if (pos > len-1) {
+        printf("\nDelete error: Index specified (%d, corresponding to %dth element) out of linked list with length (%d).\n\n", pos, pos+1, len);
+        return ;
+    }
+
+    Node *np = *hpp;
+
+    if (pos == 0) {
+        *hpp = np -> next;
+        free(np);
+        return ;
+    }
+    for (int i = 0; i < pos-1; i++) np = np -> next;
+    Node *afternode = np -> next -> next;
+    free(np -> next);
+    np -> next = afternode;
+}
+
+/* Modifies the Node at the specified position (int pos) with the specified value (int value) in the specified linked list (Node *hp). Prints an error if index is larger than linked list length minus one. */
+void updateNode(Node *hp, int value, int pos) {
+
+    int len = linkListLen(hp);
+    if (pos > len-1) {
+        printf("\nUpdate error: Index specified (%d, corresponding to %dth element) out of linked list with length (%d).\n\n", pos, pos+1, len);
+        return ;
+    }
+
+    int i = 0;
+    while (i < pos - 1) {
+        hp = hp -> next;
+    }
+    hp -> val = value;
+}
+
+/* Appends a node to the end of the specified linked list (Node *hp) with the specified value (int value). Prints an error if the linked list is empty. */
+void appendNode(Node *hp, int value) {
+
+    int i = 0;
+    if (!hp) {
+        printf("\nAdd error: Adding items to empty linked list is illegal.\n\tFirst node must be inserted [insertNode(Node **nodePointerPointer, int val, int pos = 0]).\n\n");
+        return ;
+    }
+    while (hp -> next) {
+        hp = hp -> next;
+    }
+    Node *temp = (Node *) malloc(sizeof(Node));
+    temp -> val = value;
+    temp -> next = NULL;
+    hp -> next = temp;
+}
+
+/* Reverses the linked list specifiying a pointer to the head's pointer (Node **hpp). */
+void reverseLinkList(Node **hpp) {
+
+    if (!*hpp) return ;
+
+    Node *prev = *hpp;
+    Node *np = prev -> next;
+    Node *next;
+
+    prev -> next = NULL;
+    while (np) {
+        next = np -> next;
+        np -> next = prev;
+        prev = np;
+        np = next;
+    }
+    *hpp = prev;
+}
+
+/* Prints the nodes of the specified likes list (Node *hp) values in an array format [a, b, c...]. Uses iterative method. */
+void printLinkList(Node *hp) {
+    int i = 0;
+    printf("Length: %d\n", linkListLen(hp));
+    printf("Linked list: [");
+    if (!hp) {
+        printf("]\n");
+        return;
+    }
+    while (hp) {
+        printf("%d, ", hp -> val);
+        hp = hp -> next;
+    }
+    printf("\b\b]\n");
+    
+}
 
