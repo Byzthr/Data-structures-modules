@@ -124,7 +124,7 @@ void appendNode(Node *hp, int value) {
     hp -> next = temp;
 }
 
-/* Reverses the linked list specifiying a pointer to the head's pointer (Node **hpp). */
+/* Reverses the linked list specifiying a pointer to the head's pointer (Node **hpp). Iterative method. */
 void reverseLinkList(Node **hpp) {
 
     if (!*hpp) return ;
@@ -143,7 +143,19 @@ void reverseLinkList(Node **hpp) {
     *hpp = prev;
 }
 
-/* Prints the nodes of the specified likes list (Node *hp) values in an array format [a, b, c...]. Uses iterative method. */
+/* Reverser linked list specifiying pointer to heads pointer (Node **hpp) and pointer to head (Node *np). Recursive method. */
+void reverseLinkListR(Node **hpp, Node *np) {
+
+    if (!np -> next) {
+        *hpp = np;
+        return ;
+    }
+    reverseLinkListRec(hpp, np -> next);
+    np -> next -> next = np;
+    np-> next = NULL;
+}
+
+/* Prints the length and the node values of the specified likes list (Node *hp) values in an array format [a, b, c...]. Uses iterative method. */
 void printLinkList(Node *hp) {
     int i = 0;
     printf("Length: %d\n", linkListLen(hp));
@@ -157,6 +169,23 @@ void printLinkList(Node *hp) {
         hp = hp -> next;
     }
     printf("\b\b]\n");
-    
 }
 
+/* Prints link list values specifying pointer to head (Node *np) in format a b c... Uses recursive method. */
+void printLinkListR(Node *np) {
+    if (!np){
+        printf("\n");
+        return;
+    }
+    printf("%d ", np -> val);
+    printLinkListRec(np -> next);
+}
+
+/* Prints link list values in reversed order specifying pointer to head (Node *np) in format a b c... Uses recursive method. Does not include newline character at the end. */
+void printReverseLinkListR(Node *np) {
+    if (!np){
+        return;
+    }
+    printReverseLinkListRec(np -> next);
+    printf("%d ", np -> val);
+}
