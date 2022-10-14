@@ -1,4 +1,4 @@
-# data-structures-modules-C
+# Data-structures-modules-C
 
 Collection of data structures modules written in C by me (Victor Garcia) for academic purposes.
 
