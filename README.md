@@ -4,4 +4,4 @@ Collection of data structures modules written in C by me (Victor Garcia) for aca
 
 -Basic linked list functions. (June 2022)
 
--Basic binary search trees functions. (October 2022)
+-Basic binary search tree functions. (October 2022)
