@@ -1,7 +1,7 @@
-# Linked-list-module-C (June 2022)
+# data-structures-modules-C
 
 Collection of data structures modules written in C by me (Victor Garcia) for academic purposes.
 
--Basic linked list functions.
+-Basic linked list functions. (June 2022)
 
--Basic binary search trees functions.
+-Basic binary search trees functions. (October 2022)
