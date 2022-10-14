@@ -1,3 +1,7 @@
 # Linked-list-module-C (June 2022)
 
-Basic linked list functions written by me for academic purposes.
+Collection of data structures modules written in C by me (Victor Garcia) for academic purposes.
+
+-Basic linked list functions.
+
+-Basic binary search trees functions.
